@@ -3,7 +3,7 @@ import shutil
 
 def organizar_arquivos(diretorio_origem):
     # Cria os caminhos das pastas de destino
-    pasta_txt = os.path.join(diretorio_origem, 'Arquivos_DOCX')
+    pasta_docx = os.path.join(diretorio_origem, 'Arquivos_DOCX')
     pasta_pdf = os.path.join(diretorio_origem, 'Arquivos_PDF')
     
     # Cria as pastas se elas não existirem
