@@ -7,7 +7,7 @@ def organizar_arquivos(diretorio_origem):
     pasta_pdf = os.path.join(diretorio_origem, 'Arquivos_PDF')
     
     # Cria as pastas se elas não existirem
-    os.makedirs(pasta_docx, exist_ok=True) # type: ignore
+    os.makedirs(pasta_docx, exist_ok=True) 
     os.makedirs(pasta_pdf, exist_ok=True)
     
     # Lista todos os arquivos no diretório de origem
@@ -16,18 +16,21 @@ def organizar_arquivos(diretorio_origem):
         
         # Ignora diretórios (só processa arquivos)
         if os.path.isfile(caminho_arquivo):
-            # Move arquivos .txt
+            # Move arquivos .txt/docx
             if arquivo.lower().endswith('.docx'):
-                shutil.move(caminho_arquivo, os.path.join(pasta_docx, arquivo)) # type: ignore
-                print(f'Arquivo {arquivo} movido para {pasta_docx}') # type: ignore
+                shutil.move(caminho_arquivo, os.path.join(pasta_docx, arquivo)) 
+                print(f'Arquivo {arquivo} movido para {pasta_docx}') 
             
-            # Move arquivos .pdf
+            # Move os arquivos em .pdf
+
             elif arquivo.lower().endswith('.pdf'):
                 shutil.move(caminho_arquivo, os.path.join(pasta_pdf, arquivo))
                 print(f'Arquivo {arquivo} movido para {pasta_pdf}')
 
 if __name__ == '__main__':
-    # Substitua pelo caminho do diretório que deseja organizar
+
+    # Substituir pelo caminho que vai ser organizado
+
     diretorio = r'C:\FACULDADE RUBIA'
     organizar_arquivos(diretorio)
     print("Organização concluída!")
