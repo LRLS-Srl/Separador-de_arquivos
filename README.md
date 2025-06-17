@@ -1,5 +1,5 @@
 # Separador-de_arquivos
-Automação basica feita em python este seprador de arquivos tem como ideia separar documentos em pdf e docx por pastas.
+Automação básica feita em python este seprador de arquivos tem como ideia separar documentos em pdf e docx por pastas.
 
 Instruções de execução do codigo serão inseridas em breve.
 
