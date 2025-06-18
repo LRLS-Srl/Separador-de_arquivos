@@ -34,6 +34,6 @@ if __name__ == '__main__':
 
     # Substituir pelo caminho que vai ser organizado
 
-    diretorio = r'C/teste_leo'
+    diretorio = r'C:\teste_leo'
     organizar_arquivo(diretorio)
     print("Organização concluída na pasta selecionada!", pasta)
