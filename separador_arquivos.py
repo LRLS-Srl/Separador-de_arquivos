@@ -1,7 +1,9 @@
 import os
 import shutil
 
-def organizar_arquivos(diretorio_origem):
+pasta = input('Escreva o nome da pasta, que deseja organizar')
+
+def organizar_arquivos(diretorio_origem)
     # Cria os caminhos das pastas de destino
     pasta_docx = os.path.join(diretorio_origem, 'Arquivos_DOCX')
     pasta_pdf = os.path.join(diretorio_origem, 'Arquivos_PDF')
@@ -16,8 +18,9 @@ def organizar_arquivos(diretorio_origem):
         
         # Ignora diretórios (só processa arquivos)
         if os.path.isfile(caminho_arquivo):
-            # Move arquivos .txt/docx
-            if arquivo.lower().endswith('.docx'):
+            # Move arquivos .txt/docx/jpeg/PNG
+            
+            if arquivo.lower().endswith('.docx' || 'jpeg' || 'PNG'):
                 shutil.move(caminho_arquivo, os.path.join(pasta_docx, arquivo)) 
                 print(f'Arquivo {arquivo} movido para {pasta_docx}') 
             
@@ -31,6 +34,6 @@ if __name__ == '__main__':
 
     # Substituir pelo caminho que vai ser organizado
 
-    diretorio = r'C:\FACULDADE RUBIA'
+    diretorio = 
     organizar_arquivos(diretorio)
-    print("Organização concluída!")
+    print("Organização concluída na pasta selecionada!", pasta)
