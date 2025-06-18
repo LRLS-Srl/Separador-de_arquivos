@@ -1,7 +1,15 @@
 import os
 import shutil
 
-def organizar_arquivo(diretorio_origem):
+def organizar_arquivo(pasta_de_origem):
+         """organizar_arquivo"""
+
+     categorias = {
+        "imagens" = [".jpeg", ".PNG", ".jpg", ".gif"]
+        "documentos" = [".pdf", ".doc", ".docx", ".txt"]
+        "videos" =[".mp3"; ".mp4"]
+        "musicas" =[".mp3"; ".mp4"]
+     }
     
     # Cria os caminhos das pastas de destino
     
