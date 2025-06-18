@@ -1,10 +1,10 @@
 import os
 import shutil
 
-pasta = input('Escreva o nome da pasta, que deseja organizar')
-
-def organizar_arquivos(diretorio_origem):
+def organizar_arquivo(diretorio_origem):
+    
     # Cria os caminhos das pastas de destino
+    
     pasta_docx = os.path.join(diretorio_origem, 'Arquivos_DOCX')
     pasta_pdf = os.path.join(diretorio_origem, 'Arquivos_PDF')
     
@@ -36,4 +36,4 @@ if __name__ == '__main__':
 
     diretorio = r'C:\teste_leo'
     organizar_arquivo(diretorio)
-    print("Organização concluída na pasta selecionada!", pasta)
+    print("Organização concluída na pasta selecionada!")
