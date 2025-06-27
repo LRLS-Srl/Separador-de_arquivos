@@ -7,7 +7,7 @@ def criar_menu_organizador_arquivo():
     
     # Cria os caminhos das pastas de destino
     caminho = input('Digite o caminho para organização: ').strip()
-    diretorio = Path(caminho)  # Corrigido: Criar objeto Path a partir da string
+    diretorio = Path(caminho) 
 
     if not diretorio.is_dir():
         print('Caminho não encontrado')
