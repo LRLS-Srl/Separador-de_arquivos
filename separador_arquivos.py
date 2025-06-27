@@ -1,39 +1,44 @@
 import os
 import shutil
+from pathlib import Path
 
-def organizar_arquivo(diretorio_origem):
+def criar_menu_organizador_arquivo():
+    print('=== Separador de arquivos! ===')
     
     # Cria os caminhos das pastas de destino
+    caminho = input('Digite o caminho para organização: ').strip()
+    diretorio = Path(caminho)  # Corrigido: Criar objeto Path a partir da string
+
+    if not diretorio.is_dir():
+        print('Caminho não encontrado')
+        return
+
+    print("\nDigite as extensões de arquivo a serem organizados (separados por vírgula)")
+    print("Exemplo: pdf, docx, jpg")
+    extensoes = input("Extensões: ").strip().lower().split(',')
+    extensoes = [ext.strip() for ext in extensoes if ext.strip()]  
+
+    # O usuário informa as extensões de arquivo que ele quer que sejam separados 
+    organizar_arquivos(diretorio, extensoes)
+
+def organizar_arquivos(diretorio, extensoes):
+    for ext in extensoes:
+        pasta = diretorio / ext.upper()
+        pasta.mkdir(exist_ok=True)
     
-    pasta_docx = os.path.join(diretorio_origem, 'Arquivos_DOCX')
-    pasta_pdf = os.path.join(diretorio_origem, 'Arquivos_PDF')
+    # Mover os arquivos para as pastas correspondentes
+    for item in diretorio.iterdir():
+        if item.is_file():
+            ext = item.suffix[1:].lower()  # Remove o ponto e converte para minúsculo
+            if ext in extensoes:
+                destino = diretorio / ext.upper() / item.name
+                try:
+                    shutil.move(str(item), str(destino))
+                    print(f"Movido: {item.name} -> {ext.upper()}/")
+                except Exception as e:
+                    print(f"Erro ao mover {item.name}: {e}")
     
-    # Cria as pastas se elas não existirem
-    os.makedirs(pasta_docx, exist_ok=True) 
-    os.makedirs(pasta_pdf, exist_ok=True)
-    
-    # Lista todos os arquivos no diretório de origem
-    for arquivo in os.listdir(diretorio_origem):
-        caminho_arquivo = os.path.join(diretorio_origem, arquivo)
-        
-        # Ignora diretórios (só processa arquivos)
-        if os.path.isfile(caminho_arquivo):
-            # Move arquivos .txt/docx/jpeg/PNG
+    print("\nOrganização concluída!")
 
-            if arquivo.lower().endswith('.docx'):
-                shutil.move(caminho_arquivo, os.path.join(pasta_docx, arquivo)) 
-                print(f'Arquivo {arquivo} movido para {pasta_docx}') 
-            
-            # Move os arquivos em .pdf
-
-            elif arquivo.lower().endswith('.pdf'):
-                shutil.move(caminho_arquivo, os.path.join(pasta_pdf, arquivo))
-                print(f'Arquivo {arquivo} movido para {pasta_pdf}')
-
-if __name__ == '__main__':
-
-    # Substituir pelo caminho que vai ser organizado
-
-    diretorio = r'C:\teste_leo'
-    organizar_arquivo(diretorio)
-    print("Organização concluída na pasta selecionada!")
+if __name__ == "__main__":
+    criar_menu_organizador_arquivo()
