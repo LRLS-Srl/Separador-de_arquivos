@@ -2,6 +2,8 @@ import os
 import shutil
 from pathlib import Path
 
+from send2trash import send2trash
+
 def criar_menu_organizador_arquivo():
     print('=== Separador de arquivos! ===')
     
@@ -37,6 +39,29 @@ def organizar_arquivos(diretorio, extensoes):
                     print(f"Movido: {item.name} -> {ext.upper()}/")
                 except Exception as e:
                     print(f"Erro ao mover {item.name}: {e}")
+    # INSERT_YOUR_CODE
+    # Identificar arquivos repetidos e movê-los para a lixeira
+    arquivos_nomes = {}
+    for item in diretorio.iterdir():
+        if item.is_file():
+            nome = item.name
+            if nome in arquivos_nomes:
+                arquivos_nomes[nome].append(item)
+            else:
+                arquivos_nomes[nome] = [item]
+
+    repetidos = [lista for lista in arquivos_nomes.values() if len(lista) > 1]
+    if repetidos:
+        print("\nArquivos repetidos encontrados, movendo para a lixeira:")
+        for lista in repetidos:
+            # Mantém só o mais recente, envia os outros para a lixeira
+            lista_ordenada = sorted(lista, key=lambda x: x.stat().st_mtime, reverse=True)
+            for arquivo in lista_ordenada[1:]:
+                try:
+                    send2trash(str(arquivo))
+                    print(f"Movido para lixeira: {arquivo.name}")
+                except Exception as e:
+                    print(f"Erro ao mover {arquivo.name} para a lixeira: {e}")
     
     print("\nOrganização concluída!")
 
